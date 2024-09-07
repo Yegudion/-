@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load favs_tags %}
+{% block content %}
+  <h2>Мои книги</h2>
+  {% if books %}
+    <ul>
+      {% for book in books %}
+        <li>
+            <a href="{% url "catalog:book" book.slug %}">
+                <p class="card-title">{{ book.name }}</p>
+            </a>
+          <p>Автор: {{ book.author }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Вы еще не добавили ни одной книги.</p>
+  {% endif %}
+{% endblock %}
