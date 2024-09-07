@@ -87,10 +87,7 @@ def add_book(request):
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
-            book = form.save(commit=False)
-            book.owner = request.user
-            book.status = "доступна"
-            book.save()
+            book = form.save()
             return redirect('users:profile')
     else:
         form = BookForm(user=request.user) 
@@ -100,6 +97,3 @@ def add_book(request):
 def my_books(request):
     books = Books.objects.filter(owner=request.user)  # Получаем книги текущего пользователя
     return render(request, 'users/my_books.html', {'books': books})
-
-
-
