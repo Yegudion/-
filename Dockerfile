@@ -1,10 +1,9 @@
-FROM django:onbuild
+FROM python:3.9
 
-WORKDIR /CBS
+WORKDIR /app
 
-COPY ..
+COPY . .
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "manage.py"]
-
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
