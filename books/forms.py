@@ -1,6 +1,6 @@
 from django import forms
 from books.models import Books, Genres
-
+from django.utils.text import slugify
 
 class BookForm(forms.ModelForm):
     class Meta:
@@ -14,9 +14,11 @@ class BookForm(forms.ModelForm):
 
         if user:
             self.fields['owner'].initial = user
+        
 
         # Скрываем поля, которые не должны быть доступны для ввода
         self.fields['owner'].widget = forms.HiddenInput()
+
 
 
 

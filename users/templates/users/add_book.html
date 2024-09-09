@@ -15,62 +15,6 @@
                     {{ form.as_p }}
                     <button type="submit">Добавить книгу</button>
                 </form>
-                    {% comment %} <form action="{% url "users:add_book" %}" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="id_name" class="form-label">Название</label>
-                                <input type="text" class="form-control" id="id_name"
-                                    value = "{% if form.name.value %}{{form.name.value}}{% endif %}"
-                                    name = "name"
-                                    placeholder="Введите название книги" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="id_author" class="form-label">Автор</label>
-                                <input type="text" class="form-control" id="id_author"
-                                    value = "{% if form.author.value %}{{form.author.value}}{% endif %}"
-                                    name = "author"
-                                    placeholder="Введите имя автора" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="id_description" class="form-label">Описание</label>
-                                <input type="text" class="form-control" id="id_description"
-                                    value = "{% if form.description.value %}{{form.description.value}}{% endif %}"
-                                    name = "description"
-                                    placeholder="Введите описание" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="id_city" class="form-label">Город</label>
-                                <input type="city" class="form-control" id="id_city"
-                                    value = "{% if form.city.value %}{{form.city.value}}{% endif %}"
-                                    name = "city"
-                                    placeholder="Введите город" required>
-                            </div>
-                            <form>
-                                <label for="genres">Жанр:</label>
-                                <select id="genres" name="genres">
-                                    {% for genre in genres %}
-                                    <option><a class="dropdown-item text-white">{{genre.name}}</a></option>
-                                    {% endfor %}
-                                </select>
-                            </form>
-                    
-                            <div class="col-md-12 mb-3 text-center">
-                                {% if book.image %}
-                                    <img src="{{ book.image.url }}"
-                                        alt="Обложка книги" class="img-fluid rounded-circle"
-                                        style="max-width: 150px;">
-                                {% else %}
-                                    <img src="{% static "deps/images/baseavatar.jpg" %}"
-                                        alt="Аватар пользователя" class="img-fluid rounded-circle"
-                                        style="max-width: 150px;">
-                                {% endif %}
-                                <input type="file" class="form-control mt-3" id="id_image"
-                                    name='image'
-                                    accept="image/*">
-                            </div>
-                        <button type="submit" class="btn btn-dark">Добавить</button>
-                    </form> {% endcomment %}
             </div>
         </div>
     </div>
