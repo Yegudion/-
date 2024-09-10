@@ -1,11 +1,10 @@
-version: '3.8'
+#version: '3.8'
 
 services:
   django:
     build: .
     container_name: django_container
     command: python manage.py runserver 0.0.0.0:8000
-    #command: python -m venv venv && source /venv/bin/activate && python /app/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
@@ -16,7 +15,6 @@ services:
   pgdb:
     image: postgres
     container_name: postgres_container
-    #command: sudo systemctl enable postgresql && postgresql-setup --initdb --unit postgresql
     environment:
       POSTGRES_DB: cks
       POSTGRES_USER: root
@@ -28,4 +26,4 @@ services:
       - "5432:5432"
 
 volumes:
-  pgdata: null
+  pgdata:
