@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth, messages
 
+
 from books.models import Books
 from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm
 from books.forms import BookForm
@@ -88,8 +89,6 @@ def add_book(request):
         form = BookForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
             book = form.save(commit=False)
-            book.owner = request.user
-            book.status = "доступна"
             book.save()
             return redirect('users:profile')
     else:
@@ -97,9 +96,16 @@ def add_book(request):
     return render(request, 'users/add_book.html', {'form': form}) 
 
 @login_required
+def delete_book(request, book_id):
+    book = Books.objects.get(pk=book_id)
+    if book.owner == request.user:  # Проверка, что пользователь владеет книгой
+        book.delete()
+        return redirect('users:profile')  # Перенаправьте на профиль пользователя
+    else:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
 def my_books(request):
     books = Books.objects.filter(owner=request.user)  # Получаем книги текущего пользователя
     return render(request, 'users/my_books.html', {'books': books})
-
-
-

@@ -12,4 +12,5 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('add_book/', views.add_book, name='add_book'),
     path('my_books/', views.my_books, name='my_books'),
+    path('delete_book/<uuid:book_id>/', views.delete_book, name='delete_book'),
 ]
